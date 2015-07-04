@@ -1,0 +1,32 @@
+﻿@model PartyInvites.Models.GuestResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+    <title>报名表</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <p>姓名：@Html.TextBoxFor(x => x.Name)</p>
+        <p>邮箱：@Html.TextBoxFor(x => x.Email)</p>
+        <p>手机号：@Html.TextBoxFor(x => x.Phone)</p>
+        <p>
+            是否参加？
+            @Html.DropDownListFor(x => x.WillAttend,new[]{
+                new SelectListItem(){Text = "我会参加",Value = bool.TrueString},
+                new SelectListItem(){Text = "对不起我无法参加",Value = bool.FalseString}
+                }, "请选择一项")
+        </p>
+       <input type="submit" value="Submit RSVP">
+    }
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model PartyInvites.Models.GuestResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+</head>
+<body>
+    @{
+        try
+        {
+            WebMail.SmtpServer = "smtp.163.com";
+            WebMail.SmtpPort = 25;
+            WebMail.EnableSsl = true;
+            WebMail.UserName = "renfei20131";
+            WebMail.Password = "liuquan";
+            WebMail.From = "renfei20131@163.com";
+            WebMail.Send(Model.Email, "Party确定信", Model.Name + "已确定" + ((Model.WillAttend ?? false) ? "" : "不") + "出席");
+        }
+        catch (Exception)
+        {
+            @:<b>对不起 - 邮件发送失败</b> 
+        }
+    }
+    <div>
+        <h1>谢谢, @Model.Name!</h1>
+        @if(Model.WillAttend == true)
+        {
+            @:感谢您参加。喝的已经在冰箱里了！
+        }
+        else
+        {
+            @:很遗憾听见你不能参加，谢谢你的告知！
+        }
+    </div>
+</body>
+</html>

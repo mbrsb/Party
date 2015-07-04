@@ -1,0 +1,6 @@
+﻿.field-vailidation-error {color:#f00;}
+.field-vailidation-valid {display:none;}
+.input-vallidation-error {border:1px solid #f00;background-color:#f00;}
+.vailidation-summary-error {font-weight:bold;color:#f00;}
+.vailidation-summary-valid {display:none;}
+
